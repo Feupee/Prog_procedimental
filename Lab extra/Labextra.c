@@ -1,3 +1,5 @@
+//Enviando arquivo atrasado com permissão do Claudiney//
+
 #include <stdio.h>
 #include <string.h>
 
