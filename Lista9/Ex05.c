@@ -1,32 +1,60 @@
+/*5 Elabore um programa que receba duas strings digitadas pelo usuário e
+verifique se a segunda string ocorre dentro da primeira. Use aritmética de
+ponteiros para acessar os caracteres das strings.*/
+
 #include <stdio.h>
 #include <string.h>
 
 int main(){
+    char str1[20], str2[20];
+    char *p1, *p2;
+    int i, j, tamanhostr2, k, c = 0;
 
-    char string1[50], string2[50];
-    char *ptr_string1 = string1, *ptr_string2 = string2;
+    p1 = str1;
+    p2 = str2;
 
-    printf("Digite a string1: ");
-    fgets(ptr_string1, 50, stdin);
+    printf("Digite a string 1: ");
+    fgets(str1, 20, stdin);
+    fflush(stdin);
+    printf("Digite a string 2: ");
+    fgets(str2, 20, stdin);
     fflush(stdin);
 
-    printf("Digite a string2: ");
-    fgets(ptr_string2, 50, stdin);
-    fflush(stdin);
+    tamanhostr2 = strlen(str2) - 1;
 
-    
-
-    if(strcmp(string1, string2) == 0){
-        printf("String2 eh igual a String1\n");
-        printf("\nString1: %s", ptr_string1);
-        printf("String2: %s", ptr_string2);
+    for (i = 0; *(p1+i) != '\0'; i++)
+    {
+        if (*(p1+i) == *(p2+0))
+        {
+            k = i+1;
+            for (j = 1; j < tamanhostr2; j++)
+            {
+                if(*(p1+k) == *(p2+j)){
+                    c++;
+                    k++;
+                    printf("c: %d\n", c);
+                }
+                else{
+                    break; 
+                }
+            }
+            if(c==tamanhostr2)
+            {
+                break;
+            }
+        }
     }
 
-    if(strlen(string1) < strlen(string2)){
-        printf("String2 eh maior que string1, logo String2 nao pertence a String1");
-        printf("\nString1: %s", ptr_string1);
-        printf("String2: %s", ptr_string2);
-    }   
-
+    if (c == tamanhostr2 - 1)
+        {
+            printf("A string 2 eh substring da substring 1!\n");
+            printf("\n");
+        }
+        else
+        {
+            printf("A string 2 nao eh substring da substring 1!\n");
+            printf("\n");
+        }
+    
     return 0;
 }
